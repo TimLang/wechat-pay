@@ -345,6 +345,19 @@ module WechatPay
       )
     end
 
+    def self.get_certificates
+      path = '/v3/certificates'
+      method = 'GET'
+
+      make_request(
+        path: path,
+        method: method,
+        extra_headers: {
+          'Content-Type' => 'application/x-www-form-urlencoded'
+        }
+      )
+    end
+
     class << self
       private
 
