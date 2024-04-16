@@ -345,6 +345,27 @@ module WechatPay
       )
     end
 
+    # 商户转账到零钱
+    def self.batches(params)
+      url = '/v3/transfer/batches'
+      payload_json = params.merge(
+        appid: WechatPay.app_id,
+        mchid: WechatPay.mch_id,
+        serial_no: WechatPay.apiclient_serial_no
+      ).to_json
+      method = 'POST'
+
+      make_request(
+        method: method,
+        for_sign: payload_json,
+        payload: payload_json,
+        path: url,
+        extra_headers: {
+          'Wechatpay-Serial': WechatPay.platform_serial_no,
+        }
+      )
+    end
+
     def self.get_certificates
       path = '/v3/certificates'
       method = 'GET'
