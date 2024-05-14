@@ -352,7 +352,7 @@ module WechatPay
         appid: WechatPay.app_id,
         mchid: WechatPay.mch_id,
         serial_no: WechatPay.apiclient_serial_no
-      ).to_json
+      ){ |key, oldval, newval| params.key?(key) ? oldval : newval }.to_json
       method = 'POST'
 
       make_request(
